@@ -71,6 +71,15 @@ public class Task {
 
     /* SETTERS */
     /**
+     * Sets a user-given String value for the task's title.
+     *
+     * @param title: the user-given title String
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
      * Sets a user-given String value for the task's note.
      *
      * @param note: the user-given note String
