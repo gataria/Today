@@ -1,7 +1,10 @@
 package edu.utsa.today;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
-public class Note {
+public class Note implements Parcelable {
     private String title;
     private String content;
     private Date createDate;
@@ -24,6 +27,7 @@ public class Note {
         this.createDate = createDate;
         this.lastUpdate = lastUpdate;
     }
+
 
     //Getters and Setters
 
@@ -89,5 +93,40 @@ public class Note {
     public void setLastUpdate (Date lastUpdate) {
         this.lastUpdate = lastUpdate;
     }
+
+
+    //Parcelable stuff
+
+    protected Note(Parcel in) {
+        title = in.readString();
+        content = in.readString();
+        createDate = (Date) in.readSerializable();
+        lastUpdate = (Date) in.readSerializable();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(content);
+        dest.writeSerializable(createDate);
+        dest.writeSerializable(lastUpdate);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Note> CREATOR = new Creator<Note>() {
+        @Override
+        public Note createFromParcel(Parcel in) {
+            return new Note(in);
+        }
+
+        @Override
+        public Note[] newArray(int size) {
+            return new Note[size];
+        }
+    };
 
 }
