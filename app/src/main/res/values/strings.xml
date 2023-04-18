@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Today</string>
+    <string name="save_button">Save</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="title_box_hint">Title</string>
+    <string name="content_box_hint">Content</string>
 </resources>
