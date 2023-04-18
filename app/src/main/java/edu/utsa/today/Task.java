@@ -4,10 +4,6 @@ import android.location.Location;
 import java.util.Date;
 
 public class Task {
-    /*  TODO: ask Prof. Long if storing the note as a String is good,
-        or if we should figure out how to use Android's local DB
-        https://developer.android.com/training/data-storage/room
-    */
     private String title;
     private String note;
     private Date date;
