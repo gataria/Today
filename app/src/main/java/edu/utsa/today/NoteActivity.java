@@ -9,6 +9,8 @@ import android.widget.EditText;
 
 public class NoteActivity extends AppCompatActivity {
 
+    public static final String SAVED_NOTE_KEY = "edu.utsa.cs3443.noteActivity_savedNote";
+    public static final String SAVED_NOTE_INDEX_KEY = "edu.utsa.cs3443.noteActivity_savedNoteIndex";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,10 +22,11 @@ public class NoteActivity extends AppCompatActivity {
         Button saveButton = findViewById(R.id.saveButton);
 
         Note note = getIntent().getParcelableExtra(MainActivity.NOTE_KEY, Note.class);
+        int noteIndex = getIntent().getIntExtra(MainActivity.NOTE_INDEX_KEY, -1);
         titleBox.setText(note.getTitle());
         contentBox.setText(note.getContent());
 
         cancelButton.setOnClickListener(new CancelButtonController(this));
-
+        saveButton.setOnClickListener(new SaveButtonController(this, titleBox, contentBox, noteIndex));
     }
 }
