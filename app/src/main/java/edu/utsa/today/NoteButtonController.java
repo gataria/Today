@@ -10,8 +10,7 @@ public class NoteButtonController implements View.OnClickListener {
     MainActivity mainActivity;
     int index;
 
-    public NoteButtonController(MainActivity mainActivity, Note note, int index) {
-        this.note = note;
+    public NoteButtonController(MainActivity mainActivity, int index) {
         this.mainActivity = mainActivity;
         this.index = index;
     }

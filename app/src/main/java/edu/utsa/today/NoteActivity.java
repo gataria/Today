@@ -21,10 +21,15 @@ public class NoteActivity extends AppCompatActivity {
         Button cancelButton = findViewById(R.id.cancelButton);
         Button saveButton = findViewById(R.id.saveButton);
 
-        Note note = getIntent().getParcelableExtra(MainActivity.NOTE_KEY, Note.class);
         int noteIndex = getIntent().getIntExtra(MainActivity.NOTE_INDEX_KEY, -1);
-        titleBox.setText(note.getTitle());
-        contentBox.setText(note.getContent());
+        if (noteIndex == -1) {
+            titleBox.setText("");
+            contentBox.setText("");
+        }
+        else {
+            titleBox.setText(MainActivity.noteList.get(noteIndex).getTitle());
+            contentBox.setText(MainActivity.noteList.get(noteIndex).getContent());
+        }
 
         cancelButton.setOnClickListener(new CancelButtonController(this));
         saveButton.setOnClickListener(new SaveButtonController(this, titleBox, contentBox, noteIndex));

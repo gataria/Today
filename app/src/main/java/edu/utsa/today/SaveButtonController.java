@@ -30,6 +30,7 @@ public class SaveButtonController implements View.OnClickListener {
         if (noteIndex == -1) { //if new note
             if (!(userTitle.equals("") && userContent.equals(""))){ //if note not empty, add new note to top
                 note = new Note(userTitle, userContent, currentTime, currentTime);
+                if (userTitle.equals("")) note.setTitle("Untitled Note");
                 MainActivity.noteList.add(0, note);
                 activity.setResult(Activity.RESULT_OK);
                 activity.finish();

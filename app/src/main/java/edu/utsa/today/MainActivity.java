@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             Button noteButton = new Button(this);
             noteButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             noteButton.setText(noteList.get(i).getTitle());
-            noteButton.setOnClickListener(new NoteButtonController(this, noteList.get(i), i));
+            noteButton.setOnClickListener(new NoteButtonController(this, i));
 
             listLL.addView(noteButton);
         }
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         Button newNoteButton = new Button(this);
         newNoteButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         newNoteButton.setText("+");
-        newNoteButton.setOnClickListener(new NoteButtonController(this, new Note("", "", new Date(0), new Date(0)), -1));
+        newNoteButton.setOnClickListener(new NoteButtonController(this, -1));
         listLL.addView(newNoteButton);
     }
 }
