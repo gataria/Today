@@ -6,31 +6,31 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
-public class NoteActivity extends AppCompatActivity {
+public class TaskActivity extends AppCompatActivity {
 
-    public static final String SAVED_NOTE_KEY = "edu.utsa.cs3443.noteActivity_savedNote";
-    public static final String SAVED_NOTE_INDEX_KEY = "edu.utsa.cs3443.noteActivity_savedNoteIndex";
+    public static final String SAVED_TASK_KEY = "edu.utsa.cs3443.taskActivity_savedTask";
+    public static final String SAVED_TASK_INDEX_KEY = "edu.utsa.cs3443.taskActivity_savedTaskIndex";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_note);
+        setContentView(R.layout.activity_task);
 
         EditText titleBox = findViewById(R.id.titleBox);
         EditText contentBox = findViewById(R.id.contentBox);
         Button cancelButton = findViewById(R.id.cancelButton);
         Button saveButton = findViewById(R.id.saveButton);
 
-        int noteIndex = getIntent().getIntExtra(MainActivity.NOTE_INDEX_KEY, -1);
-        if (noteIndex == -1) {
+        int taskIndex = getIntent().getIntExtra(MainActivity.TASK_INDEX_KEY, -1);
+        if (taskIndex == -1) {
             titleBox.setText("");
             contentBox.setText("");
         }
         else {
-            titleBox.setText(MainActivity.noteList.get(noteIndex).getTitle());
-            contentBox.setText(MainActivity.noteList.get(noteIndex).getContent());
+            titleBox.setText(MainActivity.noteList.get(taskIndex).getTitle());
+            contentBox.setText(MainActivity.noteList.get(taskIndex).getContent());
         }
 
         cancelButton.setOnClickListener(new CancelButtonController(this));
-        saveButton.setOnClickListener(new NoteSaveButtonController(this, titleBox, contentBox, noteIndex));
+        saveButton.setOnClickListener(new TaskSaveButtonController(this, titleBox, contentBox, taskIndex));
     }
 }

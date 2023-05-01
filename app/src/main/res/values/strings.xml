@@ -4,4 +4,6 @@
     <string name="cancel_button">Cancel</string>
     <string name="title_box_hint">Title</string>
     <string name="content_box_hint">Content</string>
+    <string name="task_title_box_hint">Task</string>
+    <string name="task_note_box_hint">Short note</string>
 </resources>

@@ -16,18 +16,18 @@ public class MainActivity extends AppCompatActivity {
 
     public static final String NOTE_KEY = "edu.utsa.cs3443.mainActivity_noteObject";
     public static final String NOTE_INDEX_KEY = "edu.utsa.cs3443.mainActivity_noteIndex";
+    public static final String TASK_KEY = "edu.utsa.cs3443.mainActivity_taskObject";
+    public static final String TASK_INDEX_KEY = "edu.utsa.cs3443.mainActivity_taskIndex";
     public static final int REQUEST_CODE = 0;
     static ArrayList<Note> noteList;
+    static ArrayList<Task> taskList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LinearLayout mainLL = findViewById(R.id.mainLL);
         noteList = new ArrayList<>();
-        noteList.add(new Note("Test Note", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", new Date(0), new Date(0)));
-
         refreshNoteList();
     }
 

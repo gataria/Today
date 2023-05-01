@@ -8,13 +8,13 @@ import android.widget.Toast;
 import java.util.Calendar;
 import java.util.Date;
 
-public class SaveButtonController implements View.OnClickListener {
+public class NoteSaveButtonController implements View.OnClickListener {
     Activity activity;
     EditText userTitleBox;
     EditText userContentBox;
     int noteIndex;
 
-    public SaveButtonController (Activity activity, EditText userTitleBox, EditText userContentBox, int noteIndex) {
+    public NoteSaveButtonController(Activity activity, EditText userTitleBox, EditText userContentBox, int noteIndex) {
         this.activity = activity;
         this.userTitleBox = userTitleBox;
         this.userContentBox = userContentBox;
