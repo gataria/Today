@@ -1,9 +1,12 @@
 package edu.utsa.today;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -50,6 +53,26 @@ public class MainActivity extends AppCompatActivity {
             noteButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             noteButton.setText(noteList.get(i).getTitle());
             noteButton.setOnClickListener(new NoteButtonController(this, i));
+            int finalI = i;
+            noteButton.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                    builder.setTitle("Delete Note");
+                    builder.setMessage("Are you sure you want to delete this note?");
+                    builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            noteList.remove(finalI);
+                            refreshNoteList();
+                        }
+                    });
+                    builder.setNegativeButton("Cancel", null);
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                    return true;
+                }
+            });
 
             listLL.addView(noteButton);
         }
