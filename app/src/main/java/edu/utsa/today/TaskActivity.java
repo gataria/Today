@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 public class TaskActivity extends AppCompatActivity {
@@ -19,6 +20,9 @@ public class TaskActivity extends AppCompatActivity {
         EditText contentBox = findViewById(R.id.contentBox);
         Button cancelButton = findViewById(R.id.cancelButton);
         Button saveButton = findViewById(R.id.saveButton);
+        CheckBox completedCheckbox = findViewById(R.id.completedCheckbox);
+        Button dateSelector = findViewById(R.id.dateSelector);
+        Button timeSelector = findViewById(R.id.timeSelector);
 
         int taskIndex = getIntent().getIntExtra(MainActivity.TASK_INDEX_KEY, -1);
         if (taskIndex == -1) {
@@ -31,6 +35,6 @@ public class TaskActivity extends AppCompatActivity {
         }
 
         cancelButton.setOnClickListener(new CancelButtonController(this));
-        saveButton.setOnClickListener(new TaskSaveButtonController(this, titleBox, contentBox, taskIndex));
+        saveButton.setOnClickListener(new TaskSaveButtonController(this, titleBox, contentBox, dateSelector, timeSelector, completedCheckbox, taskIndex));
     }
 }

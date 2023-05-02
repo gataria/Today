@@ -2,6 +2,8 @@ package edu.utsa.today;
 
 import android.app.Activity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -12,16 +14,18 @@ public class TaskSaveButtonController implements View.OnClickListener {
     Activity activity;
     EditText userTitleBox;
     EditText userNoteBox;
-    //View userDateSelector;
-    //View userCompletionCheckbox;
+    Button userDateSelector;
+    Button userTimeSelector;
+    CheckBox userCompletionCheckbox;
     int taskIndex;
 
-    public TaskSaveButtonController(Activity activity, EditText userTitleBox, EditText userNoteBox, /*View userDateSelector, View userCompletionCheckbox,*/ int taskIndex) {
+    public TaskSaveButtonController(Activity activity, EditText userTitleBox, EditText userNoteBox, Button userDateSelector, Button userTimeSelector, CheckBox userCompletionCheckbox, int taskIndex) {
         this.activity = activity;
         this.userTitleBox = userTitleBox;
         this.userNoteBox = userNoteBox;
-        //this.userDateSelector = userDateSelector;
-        //this.userCompletionCheckbox = userCompletionCheckbox;
+        this.userDateSelector = userDateSelector;
+        this.userTimeSelector = userTimeSelector;
+        this.userCompletionCheckbox = userCompletionCheckbox;
         this.taskIndex = taskIndex;
     }
 

@@ -6,4 +6,6 @@
     <string name="content_box_hint">Content</string>
     <string name="task_title_box_hint">Task</string>
     <string name="task_note_box_hint">Short note</string>
+    <string name="empty_date_selector">Select Date</string>
+    <string name="empty_time_selector">Select Time</string>
 </resources>
