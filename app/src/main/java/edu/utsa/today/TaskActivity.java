@@ -2,16 +2,12 @@ package edu.utsa.today;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.DatePickerDialog;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.EditText;
 
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 
 public class TaskActivity extends AppCompatActivity {
@@ -33,8 +29,6 @@ public class TaskActivity extends AppCompatActivity {
         Button dateSelector = findViewById(R.id.dateSelector);
         Button timeSelector = findViewById(R.id.timeSelector);
 
-//        dateSelector.setOnClickListener(new DatePickerButtonController(this, this));
-
         int taskIndex = getIntent().getIntExtra(MainActivity.TASK_INDEX_KEY, -1);
         if (taskIndex == -1) {
             titleBox.setText("");
@@ -52,6 +46,6 @@ public class TaskActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new CancelButtonController(this));
         saveButton.setOnClickListener(new TaskSaveButtonController(this, titleBox, contentBox, completedCheckbox, taskIndex));
 
-        dateSelector.setOnClickListener(new TempDateController(this, dateSelector) );
+        dateSelector.setOnClickListener(new TaskDateButtonController(this, dateSelector) );
     }
 }

@@ -7,18 +7,18 @@ import android.widget.DatePicker;
 
 import java.util.Calendar;
 
-public class TempDateController implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
+public class TaskDateButtonController implements View.OnClickListener, DatePickerDialog.OnDateSetListener {
 
     TaskActivity taskActivity;
     Button dateButton;
-    /* FIXME */
+    /* FIXME: cleanup static variables */
     Calendar userDate;
     int year;
     int month;
     int dayOfMonth;
     DatePickerDialog datePickerDialog;
 
-    public TempDateController( TaskActivity taskActivity, Button dateButton ) {
+    public TaskDateButtonController(TaskActivity taskActivity, Button dateButton ) {
         this.taskActivity = taskActivity;
         this.dateButton = dateButton;
     }
