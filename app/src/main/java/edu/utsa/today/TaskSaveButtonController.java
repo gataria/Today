@@ -16,8 +16,6 @@ public class TaskSaveButtonController implements View.OnClickListener {
     Activity activity;
     EditText userTitleBox;
     EditText userNoteBox;
-    Button userDateSelector;
-    Button userTimeSelector;
     CheckBox userCompletionCheckbox;
     int taskIndex;
 
@@ -31,10 +29,11 @@ public class TaskSaveButtonController implements View.OnClickListener {
 
     public void onClick(View view) {
 
+        Task oldTask;
         Task task;
         String userTitle = userTitleBox.getText().toString();
         String userNote = userNoteBox.getText().toString();
-        Calendar userDueDate = TaskActivity.selectedDate;
+        Calendar userDueDate = TaskActivity.savedDate;
         boolean userCompletion = userCompletionCheckbox.isChecked();
         if (taskIndex == -1) { //if new task
             if (userTitle.equals("") &&
@@ -54,17 +53,18 @@ public class TaskSaveButtonController implements View.OnClickListener {
             }
         }
         else if (taskIndex >= 0 && taskIndex < MainActivity.taskList.size()) { //if taskIndex is in range of taskList
-            task = MainActivity.taskList.get(taskIndex);
+            oldTask = Task.clone(MainActivity.taskList.get(taskIndex));
+//            task = MainActivity.taskList.get(taskIndex);
             Task userTask = new Task(userTitle, userNote, userDueDate);
             userTask.setCompleted(userCompletion);
-            if (task.compareTo(userTask) == 0) { //if task wasn't changed, cancel activity (with no-change toast)
+            if (oldTask.compareTo(userTask) == 0) { //if task wasn't changed, cancel activity (with no-change toast)
                 Toast noUpdateToast = Toast.makeText(view.getContext(), "No changes made.\nTask has not been updated.", Toast.LENGTH_SHORT);
                 noUpdateToast.show();
                 activity.setResult(Activity.RESULT_CANCELED);
                 activity.finish();
             }
             else {
-                if (userTask.getTitle().equals("")) userTask.setTitle("Untitled Task");
+                if (userTask.getTitle().equals("")) { userTask.setTitle("Untitled Task"); }
                 MainActivity.taskList.set(taskIndex, userTask);
                 Collections.sort(MainActivity.taskList);
                 activity.setResult(Activity.RESULT_OK);
