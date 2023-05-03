@@ -1,17 +1,19 @@
 package edu.utsa.today;
 
 import android.location.Location;
+
+import java.util.Calendar;
 import java.util.Date;
 
 public class Task implements Comparable<Task> {
     private String title;
     private String note;
-    private Date date;
+    private Calendar date;
     private boolean completed = false;
 
     /*  The user should not be able to create a new already-completed task,
         so the completed boolean variable isn't in the constructor. */
-    public Task(String title, String note, Date date) {
+    public Task(String title, String note, Calendar date) {
         this.title = title;
         this.note = note;
         this.date = date;
@@ -41,7 +43,7 @@ public class Task implements Comparable<Task> {
      *
      * @return task's due Date
      */
-    public Date getDate() {
+    public Calendar getDate() {
         return date;
     }
 
@@ -78,7 +80,7 @@ public class Task implements Comparable<Task> {
      *
      * @param date: the user-given Date
      */
-    public void setDate(Date date) {
+    public void setDate(Calendar date) {
         this.date = date;
     }
 

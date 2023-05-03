@@ -7,8 +7,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 public class TaskSaveButtonController implements View.OnClickListener {
     Activity activity;
@@ -19,12 +21,10 @@ public class TaskSaveButtonController implements View.OnClickListener {
     CheckBox userCompletionCheckbox;
     int taskIndex;
 
-    public TaskSaveButtonController(Activity activity, EditText userTitleBox, EditText userNoteBox, Button userDateSelector, Button userTimeSelector, CheckBox userCompletionCheckbox, int taskIndex) {
+    public TaskSaveButtonController(Activity activity, EditText userTitleBox, EditText userNoteBox, CheckBox userCompletionCheckbox, int taskIndex) {
         this.activity = activity;
         this.userTitleBox = userTitleBox;
         this.userNoteBox = userNoteBox;
-        this.userDateSelector = userDateSelector;
-        this.userTimeSelector = userTimeSelector;
         this.userCompletionCheckbox = userCompletionCheckbox;
         this.taskIndex = taskIndex;
     }
@@ -34,25 +34,24 @@ public class TaskSaveButtonController implements View.OnClickListener {
         Task task;
         String userTitle = userTitleBox.getText().toString();
         String userNote = userNoteBox.getText().toString();
-        Date userDueDate /*= userDateSelector.getDate(however you do that)*/= new Date();
-        boolean userCompletion /*= userCompletionCheckbox.getCheckmarkStatus(however you do that)*/= false;
+        Calendar userDueDate = TaskActivity.selectedDate;
+        boolean userCompletion = userCompletionCheckbox.isChecked();
         if (taskIndex == -1) { //if new task
-            /*
             if (userTitle.equals("") &&
                 userNote.equals("") &&
-                userDueDate.equals( [what does no selection in a date selector look like? is it equal to "new Date()", "new Date(0)", or something else?] ) &&
-                userCompletion == false) { //if task is empty, cancel activity
+                userDueDate.equals( new GregorianCalendar(1970, Calendar.JANUARY, 1, 0, 0, 0) ) &&
+                !userCompletion) { //if task is empty, cancel activity
                 activity.setResult(Activity.RESULT_CANCELED);
                 activity.finish();
             }
             else { //if task is not empty, add new task to taskList and sort.
-                task = new Task(userTitle, userContent, userDueDate));
+                task = new Task(userTitle, userNote, userDueDate);
                 if (userTitle.equals("")) task.setTitle("Untitled Task");
                 MainActivity.taskList.add(task);
                 Collections.sort(MainActivity.taskList);
                 activity.setResult(Activity.RESULT_OK);
                 activity.finish();
-            }*/
+            }
         }
         else if (taskIndex >= 0 && taskIndex < MainActivity.taskList.size()) { //if taskIndex is in range of taskList
             task = MainActivity.taskList.get(taskIndex);

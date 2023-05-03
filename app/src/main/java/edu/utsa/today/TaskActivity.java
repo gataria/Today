@@ -7,10 +7,15 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 public class TaskActivity extends AppCompatActivity {
 
     public static final String SAVED_TASK_KEY = "edu.utsa.cs3443.taskActivity_savedTask";
     public static final String SAVED_TASK_INDEX_KEY = "edu.utsa.cs3443.taskActivity_savedTaskIndex";
+    static Calendar selectedDate;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,17 +29,23 @@ public class TaskActivity extends AppCompatActivity {
         Button dateSelector = findViewById(R.id.dateSelector);
         Button timeSelector = findViewById(R.id.timeSelector);
 
+        dateSelector.setOnClickListener(new DatePickerButtonController(this, this));
+
         int taskIndex = getIntent().getIntExtra(MainActivity.TASK_INDEX_KEY, -1);
         if (taskIndex == -1) {
             titleBox.setText("");
             contentBox.setText("");
+            selectedDate = new GregorianCalendar(1970, Calendar.JANUARY, 1, 0, 0, 0);
+            completedCheckbox.setChecked(false);
         }
         else {
             titleBox.setText(MainActivity.noteList.get(taskIndex).getTitle());
             contentBox.setText(MainActivity.noteList.get(taskIndex).getContent());
+            selectedDate = MainActivity.taskList.get(taskIndex).getDate();
+            completedCheckbox.setChecked(MainActivity.taskList.get(taskIndex).isCompleted());
         }
 
         cancelButton.setOnClickListener(new CancelButtonController(this));
-        saveButton.setOnClickListener(new TaskSaveButtonController(this, titleBox, contentBox, dateSelector, timeSelector, completedCheckbox, taskIndex));
+        saveButton.setOnClickListener(new TaskSaveButtonController(this, titleBox, contentBox, completedCheckbox, taskIndex));
     }
 }
