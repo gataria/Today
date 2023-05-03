@@ -95,10 +95,24 @@ public class Task implements Comparable<Task> {
 
     @Override
     public int compareTo(Task task) {
-        int comp = this.date.compareTo(task.getDate());
+        int comp = task.getDate().get(Calendar.YEAR) - this.date.get(Calendar.YEAR);
+        if (comp == 0) comp = task.getDate().get(Calendar.MONTH) - this.date.get(Calendar.MONTH);
+        if (comp == 0) comp = task.getDate().get(Calendar.DAY_OF_MONTH) - this.date.get(Calendar.DAY_OF_MONTH);
+        if (comp == 0) comp = task.getDate().get(Calendar.HOUR_OF_DAY) - this.date.get(Calendar.HOUR_OF_DAY);
+        if (comp == 0) comp = task.getDate().get(Calendar.MINUTE) - this.date.get(Calendar.MINUTE);
         if (comp == 0) comp = this.title.compareTo(task.getTitle());
         if (comp == 0) comp = this.note.compareTo(task.getNote());
         if (comp == 0) comp = Boolean.compare(this.completed, task.isCompleted());
         return comp;
+    }
+
+    public static Task clone(Task originTask) {
+        Task cloneTask = new Task(
+                originTask.getTitle(),
+                originTask.getNote(),
+                (Calendar)(originTask.getDate()).clone()
+        );
+        cloneTask.setCompleted(originTask.isCompleted());
+        return cloneTask;
     }
 }

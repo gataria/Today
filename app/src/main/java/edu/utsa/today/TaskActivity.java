@@ -12,8 +12,6 @@ import java.util.GregorianCalendar;
 
 public class TaskActivity extends AppCompatActivity {
 
-    public static final String SAVED_TASK_KEY = "edu.utsa.cs3443.taskActivity_savedTask";
-    public static final String SAVED_TASK_INDEX_KEY = "edu.utsa.cs3443.taskActivity_savedTaskIndex";
     static Calendar savedDate;
 
     @Override
@@ -37,15 +35,31 @@ public class TaskActivity extends AppCompatActivity {
             completedCheckbox.setChecked(false);
         }
         else {
-            titleBox.setText(MainActivity.noteList.get(taskIndex).getTitle());
-            contentBox.setText(MainActivity.noteList.get(taskIndex).getContent());
-            savedDate = MainActivity.taskList.get(taskIndex).getDate();
-            completedCheckbox.setChecked(MainActivity.taskList.get(taskIndex).isCompleted());
+            Task oldTask = MainActivity.taskList.get( taskIndex );
+
+            titleBox.setText( oldTask.getTitle() );
+            contentBox.setText( oldTask.getNote() );
+            savedDate = (Calendar)(oldTask.getDate()).clone();
+            completedCheckbox.setChecked( oldTask.isCompleted());
+
+            String dateText = "" + savedDate.get(Calendar.YEAR) + "-" + savedDate.get(Calendar.MONTH) + "-" + savedDate.get(Calendar.DAY_OF_MONTH);
+            dateSelector.setText(dateText);
+
+            String timeText;
+            int timeHour = savedDate.get(Calendar.HOUR_OF_DAY);
+            String timeMinute = String.format("%02d", savedDate.get(Calendar.MINUTE));
+            if (timeHour < 12) { timeText = timeHour + ":" + timeMinute + " AM"; }
+            else if (timeHour == 12) { timeText = timeHour + ":" + timeMinute + " PM"; }
+            else { timeText = (timeHour - 12) + ":" + timeMinute + " PM"; }
+            timeSelector.setText(timeText);
+
         }
 
         cancelButton.setOnClickListener(new CancelButtonController(this));
         saveButton.setOnClickListener(new TaskSaveButtonController(this, titleBox, contentBox, completedCheckbox, taskIndex));
 
-        dateSelector.setOnClickListener(new TaskDateButtonController(this, dateSelector) );
+        dateSelector.setOnClickListener(new TaskDateButtonController(this, dateSelector ) );
+        timeSelector.setOnClickListener( new TaskTimeButtonController( this, timeSelector ) );
+
     }
 }

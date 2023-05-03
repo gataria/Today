@@ -27,8 +27,6 @@ public class MainActivity extends AppCompatActivity {
 
         refreshNoteList();
         refreshTaskList();
-
-        System.out.println("teehee :3");
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -36,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 refreshNoteList();
+                refreshTaskList();
             }
         }
     }
