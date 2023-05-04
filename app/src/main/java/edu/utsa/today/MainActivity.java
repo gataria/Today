@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
             noteButton.setOnClickListener( noteButtonController.new NoteButtonAccessController() );
             noteButton.setOnLongClickListener( noteButtonController.new NoteButtonDeleteController() );
 
-            styleNoteButton( noteButton, i );
+            styleNoteButton( noteButton );
 
             listLL.addView(noteButton);
         }
@@ -129,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
         taskButton.setTextSize( 18.0F );
     }
 
-    private void styleNoteButton( Button noteButton, int curIndex ) {
+    private void styleNoteButton( Button noteButton ) {
         noteButton.setBackgroundTintList( this.getColorStateList( R.color.note_background ) );
         noteButton.setAllCaps( false );
         noteButton.setTextSize( 18.0F );
