@@ -45,9 +45,10 @@ public class TaskSaveButtonController implements View.OnClickListener {
             }
             else { //if task is not empty, add new task to taskList and sort.
                 task = new Task(userTitle, userNote, userDueDate);
+                task.setCompleted(userCompletion);
                 if (userTitle.equals("")) task.setTitle("Untitled Task");
                 MainActivity.taskList.add(task);
-                Collections.sort(MainActivity.taskList);
+                Collections.sort(MainActivity.taskList, Collections.reverseOrder());
                 activity.setResult(Activity.RESULT_OK);
                 activity.finish();
             }
@@ -66,7 +67,7 @@ public class TaskSaveButtonController implements View.OnClickListener {
             else {
                 if (userTask.getTitle().equals("")) { userTask.setTitle("Untitled Task"); }
                 MainActivity.taskList.set(taskIndex, userTask);
-                Collections.sort(MainActivity.taskList);
+                Collections.sort(MainActivity.taskList, Collections.reverseOrder());
                 activity.setResult(Activity.RESULT_OK);
                 activity.finish();
             }
