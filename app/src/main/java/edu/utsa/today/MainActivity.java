@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < noteList.size(); i++) {
             Button noteButton = new Button(this);
             NoteButtonController noteButtonController = new NoteButtonController( this, i );
-            noteButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            noteButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             noteButton.setText(noteList.get(i).getTitle());
             noteButton.setOnClickListener( noteButtonController.new NoteButtonAccessController() );
             noteButton.setOnLongClickListener( noteButtonController.new NoteButtonDeleteController() );
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < taskList.size(); i++) {
             Button taskButton = new Button(this);
             TaskButtonController taskButtonController = new TaskButtonController(this, i);
-            taskButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            taskButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             taskButton.setText(taskList.get(i).getTitle());
             taskButton.setOnClickListener(taskButtonController.new TaskButtonAccessController());
             taskButton.setOnLongClickListener(taskButtonController.new TaskButtonDeleteController());
@@ -82,12 +82,19 @@ public class MainActivity extends AppCompatActivity {
             Calendar dueDate = taskList.get(i).getDate();
             Calendar now = Calendar.getInstance();
             if (
-                    !(taskList.get(i).isCompleted()) &&
+                    !(taskList.get(i).isCompleted())
+                    &&
                     now.get(Calendar.YEAR) >= dueDate.get(Calendar.YEAR) &&
                     now.get(Calendar.MONTH) >= dueDate.get(Calendar.MONTH) &&
                     now.get(Calendar.DAY_OF_MONTH) >= dueDate.get(Calendar.DAY_OF_MONTH) &&
                     now.get(Calendar.HOUR_OF_DAY) >= dueDate.get(Calendar.HOUR_OF_DAY) &&
                     now.get(Calendar.MINUTE) >= dueDate.get(Calendar.MINUTE)
+                    && !(
+                    dueDate.get(Calendar.YEAR) == 1970 &&
+                    dueDate.get(Calendar.MONTH) == Calendar.JANUARY &&
+                    dueDate.get(Calendar.DAY_OF_MONTH) == 1 &&
+                    dueDate.get(Calendar.HOUR_OF_DAY) == 0 &&
+                    dueDate.get(Calendar.MINUTE) == 0)
             ) {
                 taskButton.setBackgroundColor(ContextCompat.getColor(this, R.color.late_task));
             }

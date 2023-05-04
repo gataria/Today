@@ -44,7 +44,7 @@ public class TaskActivity extends AppCompatActivity {
 
             if (! ( savedDate.get(Calendar.YEAR) == 1970 && savedDate.get(Calendar.MONTH) == Calendar.JANUARY && savedDate.get(Calendar.DAY_OF_MONTH) == 1 &&
                     savedDate.get(Calendar.HOUR_OF_DAY) == 0 && savedDate.get(Calendar.MINUTE) == 0 ) ) { //if not unix epoch, set dateSelector's text to savedDate
-                String dateText = "" + savedDate.get(Calendar.YEAR) + "-" + savedDate.get(Calendar.MONTH) + "-" + savedDate.get(Calendar.DAY_OF_MONTH);
+                String dateText = "" + savedDate.get(Calendar.YEAR) + "-" + (savedDate.get(Calendar.MONTH) + 1) + "-" + savedDate.get(Calendar.DAY_OF_MONTH);
                 dateSelector.setText(dateText);
 
                 String timeText;
