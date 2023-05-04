@@ -1,9 +1,12 @@
 package edu.utsa.today;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -39,42 +42,48 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void refreshNoteList() {
+    void refreshNoteList() {
         LinearLayout listLL = findViewById(R.id.mainLL);
         listLL.removeAllViews();
 
         for (int i = 0; i < noteList.size(); i++) {
             Button noteButton = new Button(this);
+            NoteButtonController noteButtonController = new NoteButtonController( this, i );
             noteButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             noteButton.setText(noteList.get(i).getTitle());
-            noteButton.setOnClickListener(new NoteButtonController(this, i));
+            noteButton.setOnClickListener( noteButtonController.new NoteButtonAccessController() );
+            noteButton.setOnLongClickListener( noteButtonController.new NoteButtonDeleteController() );
 
             listLL.addView(noteButton);
         }
 
         Button newNoteButton = new Button(this);
+        NoteButtonController newNoteButtonController = new NoteButtonController( this, -1 );
         newNoteButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         newNoteButton.setText("+");
-        newNoteButton.setOnClickListener(new NoteButtonController(this, -1));
+        newNoteButton.setOnClickListener( newNoteButtonController.new NoteButtonAccessController() );
         listLL.addView(newNoteButton);
     }
-    private void refreshTaskList() {
+    void refreshTaskList() {
         LinearLayout taskLL = findViewById(R.id.taskLL);
         taskLL.removeAllViews();
 
         for (int i = 0; i < taskList.size(); i++) {
             Button taskButton = new Button(this);
+            TaskButtonController taskButtonController = new TaskButtonController(this, i);
             taskButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             taskButton.setText(taskList.get(i).getTitle());
-            taskButton.setOnClickListener(new TaskButtonController(this, i));
+            taskButton.setOnClickListener(taskButtonController.new TaskButtonAccessController());
+            taskButton.setOnLongClickListener(taskButtonController.new TaskButtonDeleteController());
 
             taskLL.addView(taskButton);
         }
 
         Button newTaskButton = new Button(this);
+        TaskButtonController taskButtonController = new TaskButtonController( this, -1 );
         newTaskButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         newTaskButton.setText("+");
-        newTaskButton.setOnClickListener(new TaskButtonController(this, -1));
+        newTaskButton.setOnClickListener( taskButtonController.new TaskButtonAccessController() );
         taskLL.addView(newTaskButton);
     }
 }
