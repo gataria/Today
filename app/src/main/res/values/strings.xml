@@ -8,4 +8,6 @@
     <string name="task_note_box_hint">Short note</string>
     <string name="empty_date_selector">Select Date</string>
     <string name="empty_time_selector">Select Time</string>
+    <string name="authors_1">Ranjit Adhikari • Adolfo Aguilar</string>
+    <string name="authors_2">Rodrigo Dávila Castillo • Simon Newcomb</string>
 </resources>
