@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < noteList.size(); i++) {
             Button noteButton = new Button(this);
             NoteButtonController noteButtonController = new NoteButtonController( this, i );
-            noteButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            noteButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             noteButton.setText(noteList.get(i).getTitle());
             noteButton.setOnClickListener( noteButtonController.new NoteButtonAccessController() );
             noteButton.setOnLongClickListener( noteButtonController.new NoteButtonDeleteController() );
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < taskList.size(); i++) {
             Button taskButton = new Button(this);
             TaskButtonController taskButtonController = new TaskButtonController(this, i);
-            taskButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+            taskButton.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             taskButton.setText(taskList.get(i).getTitle());
             taskButton.setOnClickListener(taskButtonController.new TaskButtonAccessController());
             taskButton.setOnLongClickListener(taskButtonController.new TaskButtonDeleteController());
