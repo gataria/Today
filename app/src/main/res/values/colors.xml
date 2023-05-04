@@ -8,8 +8,13 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#3BBFD4</color>
+    <color name="primary_variant">#15BAD4</color>
     <color name="secondary">#A0E2FA</color>
+    <color name="secondary_variant">#82DAFA</color>
     <color name="red">#FF0000</color>
     <color name="green">#00FF00</color>
     <color name="late_task">#F07070</color>
+    <color name="note_background">#F7FAAF</color>
+    <color name="task_view_background">#D4F0FA</color>
+    <color name="note_view_background">#D4F0FA</color>
 </resources>
