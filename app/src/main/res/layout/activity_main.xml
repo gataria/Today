@@ -8,30 +8,50 @@
     android:gravity="center"
     android:orientation="vertical">
 
+    <TextView
+        android:id="@+id/taskHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tasks_header"
+        android:textSize="54dp"
+        android:fontFamily="@font/public_sans_black_italic"
+        android:layout_margin="6dp"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@color/primary">
+        android:background="@color/material_dynamic_neutral90">
         <LinearLayout
-            android:id="@+id/mainLL"
+            android:id="@+id/taskLL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="top|center"
-            android:orientation="vertical" />
+            android:orientation="vertical" >
+        </LinearLayout>
     </ScrollView>
 
+    <TextView
+        android:id="@+id/noteHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/notes_header"
+        android:textSize="54dp"
+        android:fontFamily="@font/public_sans_black_italic"
+        android:layout_margin="6dp"/>
+
     <ScrollView
-        android:background="@color/secondary"
+        android:background="@color/material_dynamic_neutral90"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/taskLL"
+            android:id="@+id/mainLL"
             android:gravity="top|center"
-            android:orientation="vertical"/>
+            android:orientation="vertical">
+        </LinearLayout>
     </ScrollView>
 
 </LinearLayout>

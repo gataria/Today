@@ -10,4 +10,6 @@
     <string name="empty_time_selector">Select Time</string>
     <string name="authors_1">Ranjit Adhikari • Adolfo Aguilar</string>
     <string name="authors_2">Rodrigo Dávila Castillo • Simon Newcomb</string>
+    <string name="notes_header">My notes</string>
+    <string name="tasks_header">My tasks</string>
 </resources>
