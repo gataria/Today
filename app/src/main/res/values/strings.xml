@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Today</string>
+    <string name="save_button">Save</string>
+    <string name="cancel_button">Cancel</string>
+    <string name="title_box_hint">Title</string>
+    <string name="content_box_hint">Content</string>
+    <string name="task_title_box_hint">Task</string>
+    <string name="task_note_box_hint">Short note</string>
+    <string name="empty_date_selector">Select Date</string>
+    <string name="empty_time_selector">Select Time</string>
+    <string name="authors_1">Ranjit Adhikari • Adolfo Aguilar</string>
+    <string name="authors_2">Rodrigo Dávila Castillo • Simon Newcomb</string>
+    <string name="notes_header">My notes</string>
+    <string name="tasks_header">My tasks</string>
 </resources>
