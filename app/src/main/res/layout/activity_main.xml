@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/tasks_header"
-        android:textSize="54dp"
+        android:textSize="36sp"
         android:fontFamily="@font/public_sans_black_italic"
         android:layout_margin="6dp"/>
 
@@ -21,13 +21,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:background="@color/material_dynamic_neutral90">
+        android:background="@color/task_view_background">
         <LinearLayout
             android:id="@+id/taskLL"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="top|center"
-            android:orientation="vertical" >
+            android:orientation="vertical"
+            android:padding="4dp">
         </LinearLayout>
     </ScrollView>
 
@@ -36,12 +37,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/notes_header"
-        android:textSize="54dp"
+        android:textSize="36sp"
         android:fontFamily="@font/public_sans_black_italic"
         android:layout_margin="6dp"/>
 
     <ScrollView
-        android:background="@color/material_dynamic_neutral90"
+        android:background="@color/note_view_background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1">
