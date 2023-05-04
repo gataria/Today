@@ -11,4 +11,5 @@
     <color name="secondary">#A0E2FA</color>
     <color name="red">#FF0000</color>
     <color name="green">#00FF00</color>
+    <color name="late_task">#F07070</color>
 </resources>

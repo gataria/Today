@@ -38,7 +38,6 @@ public class TaskDateButtonController implements View.OnClickListener, DatePicke
     public void onDateSet(DatePicker datePicker, int year, int month, int day) {
         String dateString = year + "-" + ( month + 1 ) + "-" + day; /* YYYY-MM-DD */
 
-        /* TODO: use set(year, month, day, hourOfDay, minute) function to prevent overwriting time to midnight */
         TaskActivity.savedDate.set( year, month, day, TaskActivity.savedDate.get(Calendar.HOUR_OF_DAY), TaskActivity.savedDate.get(Calendar.MINUTE) );
 
         dateButton.setText( dateString );

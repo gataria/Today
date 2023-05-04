@@ -42,24 +42,27 @@ public class TaskActivity extends AppCompatActivity {
             savedDate = (Calendar)(oldTask.getDate()).clone();
             completedCheckbox.setChecked( oldTask.isCompleted());
 
-            String dateText = "" + savedDate.get(Calendar.YEAR) + "-" + savedDate.get(Calendar.MONTH) + "-" + savedDate.get(Calendar.DAY_OF_MONTH);
-            dateSelector.setText(dateText);
+            if (! ( savedDate.get(Calendar.YEAR) == 1970 && savedDate.get(Calendar.MONTH) == Calendar.JANUARY && savedDate.get(Calendar.DAY_OF_MONTH) == 1 &&
+                    savedDate.get(Calendar.HOUR_OF_DAY) == 0 && savedDate.get(Calendar.MINUTE) == 0 ) ) { //if not unix epoch, set dateSelector's text to savedDate
+                String dateText = "" + savedDate.get(Calendar.YEAR) + "-" + savedDate.get(Calendar.MONTH) + "-" + savedDate.get(Calendar.DAY_OF_MONTH);
+                dateSelector.setText(dateText);
 
-            String timeText;
-            int timeHour = savedDate.get(Calendar.HOUR_OF_DAY);
-            String timeMinute = String.format("%02d", savedDate.get(Calendar.MINUTE));
-            if (timeHour < 12) { timeText = timeHour + ":" + timeMinute + " AM"; }
-            else if (timeHour == 12) { timeText = timeHour + ":" + timeMinute + " PM"; }
-            else { timeText = (timeHour - 12) + ":" + timeMinute + " PM"; }
-            timeSelector.setText(timeText);
-
+                String timeText;
+                int timeHour = savedDate.get(Calendar.HOUR_OF_DAY);
+                String timeMinute = String.format("%02d", savedDate.get(Calendar.MINUTE));
+                if (timeHour == 0) { timeText = "12:" + timeMinute + " AM"; }
+                else if (timeHour < 12) { timeText = timeHour + ":" + timeMinute + " AM"; }
+                else if (timeHour == 12) { timeText = timeHour + ":" + timeMinute + " PM"; }
+                else { timeText = (timeHour - 12) + ":" + timeMinute + " PM"; }
+                timeSelector.setText(timeText);
+            }
         }
 
         cancelButton.setOnClickListener(new CancelButtonController(this));
         saveButton.setOnClickListener(new TaskSaveButtonController(this, titleBox, contentBox, completedCheckbox, taskIndex));
 
         dateSelector.setOnClickListener(new TaskDateButtonController(this, dateSelector ) );
-        timeSelector.setOnClickListener( new TaskTimeButtonController( this, timeSelector ) );
+        timeSelector.setOnClickListener( new TaskTimeButtonController( this, timeSelector, dateSelector ) );
 
     }
 }

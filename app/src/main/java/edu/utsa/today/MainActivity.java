@@ -2,9 +2,11 @@ package edu.utsa.today;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
 
@@ -75,6 +78,23 @@ public class MainActivity extends AppCompatActivity {
             taskButton.setText(taskList.get(i).getTitle());
             taskButton.setOnClickListener(taskButtonController.new TaskButtonAccessController());
             taskButton.setOnLongClickListener(taskButtonController.new TaskButtonDeleteController());
+
+            Calendar dueDate = taskList.get(i).getDate();
+            Calendar now = Calendar.getInstance();
+            if (
+                    !(taskList.get(i).isCompleted()) &&
+                    now.get(Calendar.YEAR) >= dueDate.get(Calendar.YEAR) &&
+                    now.get(Calendar.MONTH) >= dueDate.get(Calendar.MONTH) &&
+                    now.get(Calendar.DAY_OF_MONTH) >= dueDate.get(Calendar.DAY_OF_MONTH) &&
+                    now.get(Calendar.HOUR_OF_DAY) >= dueDate.get(Calendar.HOUR_OF_DAY) &&
+                    now.get(Calendar.MINUTE) >= dueDate.get(Calendar.MINUTE)
+            ) {
+                taskButton.setBackgroundColor(ContextCompat.getColor(this, R.color.late_task));
+            }
+            else if ( taskList.get(i).isCompleted() )
+            {
+                taskButton.setPaintFlags( taskButton.getPaintFlags() | Paint.STRIKE_THRU_TEXT_FLAG );
+            }
 
             taskLL.addView(taskButton);
         }

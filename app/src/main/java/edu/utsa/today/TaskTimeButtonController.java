@@ -11,14 +11,16 @@ public class TaskTimeButtonController implements View.OnClickListener, TimePicke
 
     TaskActivity taskActivity;
     Button timeButton;
+    Button dateButton;
     Calendar userTime;
     int hourOfDay;
     int minute;
     TimePickerDialog timePickerDialog;
 
-    public TaskTimeButtonController( TaskActivity taskActivity, Button timeButton ) {
+    public TaskTimeButtonController( TaskActivity taskActivity, Button timeButton, Button dateButton ) {
         this.taskActivity = taskActivity;
         this.timeButton = timeButton;
+        this.dateButton = dateButton;
     }
 
     @Override
@@ -40,7 +42,11 @@ public class TaskTimeButtonController implements View.OnClickListener, TimePicke
         String minuteString = String.format( "%02d", minute );
 
         String timeString;
-        if( hourOfDay < 12 )
+        if( hourOfDay == 0 )
+        {
+            timeString = "12:" + minuteString + " AM";
+        }
+        else if( hourOfDay < 12 )
         {
             timeString = hourOfDay + ":" + minuteString + " AM";
         }
@@ -53,11 +59,24 @@ public class TaskTimeButtonController implements View.OnClickListener, TimePicke
             timeString = (hourOfDay - 12) + ":" + minuteString + " PM";
         }
 
-        TaskActivity.savedDate.set( TaskActivity.savedDate.get(Calendar.YEAR),
+        if (TaskActivity.savedDate.get(Calendar.YEAR) == 1970 && TaskActivity.savedDate.get(Calendar.MONTH) == Calendar.JANUARY && TaskActivity.savedDate.get(Calendar.DAY_OF_MONTH) == 1) {
+            Calendar today = Calendar.getInstance();
+            TaskActivity.savedDate.set(today.get(Calendar.YEAR),
+                    today.get(Calendar.MONTH),
+                    today.get(Calendar.DAY_OF_MONTH),
+                    hourOfDay, minute);
+            String dateString;
+            dateString = TaskActivity.savedDate.get(Calendar.YEAR) + "-"
+                    + (TaskActivity.savedDate.get(Calendar.MONTH) + 1) + "-"
+                    + TaskActivity.savedDate.get(Calendar.DAY_OF_MONTH);
+            dateButton.setText(dateString);
+        }
+        else {
+            TaskActivity.savedDate.set(TaskActivity.savedDate.get(Calendar.YEAR),
                 TaskActivity.savedDate.get(Calendar.MONTH),
                 TaskActivity.savedDate.get(Calendar.DAY_OF_MONTH),
-                hourOfDay,
-                minute );
+                hourOfDay, minute);
+        }
 
         timeButton.setText( timeString );
     }
